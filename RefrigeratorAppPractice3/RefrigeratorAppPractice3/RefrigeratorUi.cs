@@ -26,13 +26,18 @@ namespace RefrigeratorAppPractice3
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            refrigetor.item.Add(Convert.ToInt16(itemTextBox.Text));
-            refrigetor.weight.Add(Convert.ToDouble(weightTextBox.Text));
-            if (refrigetor.Valid())
+            //refrigetor.item.Add(Convert.ToDouble(itemTextBox.Text));
+            //refrigetor.weight.Add(Convert.ToDouble(weightTextBox.Text));
+            double item = Convert.ToDouble(itemTextBox.Text);
+            double weight = Convert.ToDouble(weightTextBox.Text);
+            refrigetor.ADD_Item_and_Weight(item, weight);
+            if (refrigetor.ValidationCheck())
             {
-               currentWeightTextBox.Text= refrigetor.CW().ToString();
-               remainingWeightTextBox.Text = refrigetor.RW().ToString();
+                currentWeightTextBox.Text = refrigetor.CurrentWeight().ToString();
+                remainingWeightTextBox.Text = refrigetor.RemainWeight().ToString();
             }
+            else
+                MessageBox.Show("Current weight is greater than Maximum Weigth");
 
         }
     }

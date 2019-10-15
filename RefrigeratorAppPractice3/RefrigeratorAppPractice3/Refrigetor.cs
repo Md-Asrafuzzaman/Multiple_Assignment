@@ -9,7 +9,7 @@ namespace RefrigeratorAppPractice3
     public class Refrigetor
     {
         public double maxWeight;
-        public List<int> item = new List<int>();
+        public List<double> item = new List<double>();
         public List<double> weight = new List<double>();
 
 
@@ -17,8 +17,14 @@ namespace RefrigeratorAppPractice3
         {
             this.maxWeight = maxWeight;
         }
-
-        public double CW()
+        public void ADD_Item_and_Weight(double item,double weight)
+        {
+            //item.Add(Convert.ToDouble(item));
+            //weight.Add(Convert.ToDouble(weight));
+            this.item.Add(item);
+            this.weight.Add(weight);
+        }
+        public double CurrentWeight()
         {
             double cw = 0;
             for (int i = 0; i < item.Count; i++)
@@ -29,18 +35,22 @@ namespace RefrigeratorAppPractice3
             return cw;
         }
 
-        public double RW()
+        public double RemainWeight()
         {
-            return maxWeight - CW();
+            return maxWeight - CurrentWeight();
         }
 
-        public bool Valid()
+        public bool ValidationCheck()
         {
-            if (RW() > maxWeight)
+            if (CurrentWeight() < maxWeight)
+            {
+                return true;  
+            }
+            else
             {
                 return false;
             }
-            return true;
+            
         }
     }
 }
